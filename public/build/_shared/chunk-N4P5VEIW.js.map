@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../node_modules/@mantine/remix/src/ClientProvider.tsx", "../../../node_modules/@mantine/remix/src/StylesPlaceholder.tsx"],
+  "sourcesContent": ["import React from 'react';\nimport { EmotionCache, useEmotionCache } from '@mantine/core';\nimport { useIsomorphicEffect } from '@mantine/hooks';\n\ninterface ClientProviderProps {\n  children: React.ReactNode;\n  emotionCache?: EmotionCache;\n}\n\nexport function ClientProvider({ children, emotionCache }: ClientProviderProps) {\n  const defaultCache = useEmotionCache();\n  const cache = emotionCache || defaultCache;\n\n  useIsomorphicEffect(() => {\n    cache.sheet.container = document.head;\n    const { tags } = cache.sheet;\n    cache.sheet.flush();\n    tags.forEach((tag) => {\n      (cache.sheet as any)._insertTag(tag);\n    });\n  }, []);\n\n  return <>{children}</>;\n}\n", "import React from 'react';\n\nexport function StylesPlaceholder() {\n  return <>{typeof document === 'undefined' ? '__MANTINE_STYLES__' : null}</>;\n}\n"],
+  "mappings": ";;;;;;;;;;;AAGO,SAAS,eAAe,EAAE,UAAU,aAAY,GAAI;AACzD,QAAM,eAAe,gBAAe;AACpC,QAAM,QAAQ,gBAAgB;AAC9B,sBAAoB,MAAM;AACxB,UAAM,MAAM,YAAY,SAAS;AACjC,UAAM,EAAE,KAAI,IAAK,MAAM;AACvB,UAAM,MAAM,MAAK;AACjB,SAAK,QAAQ,CAAC,QAAQ;AACpB,YAAM,MAAM,WAAW,GAAG;IAChC,CAAK;EACL,GAAK,CAAA,CAAE;AACL,SAAuB,6BAAAA,QAAM,cAAc,aAAAA,QAAM,UAAU,MAAM,QAAQ;AAC3E;;;;ACdO,SAAS,oBAAoB;AAClC,SAAuB,8BAAAC,QAAM,cAAc,cAAAA,QAAM,UAAU,MAAM,OAAO,aAAa,cAAc,uBAAuB,IAAI;AAChI;",
+  "names": ["React", "React"]
+}
